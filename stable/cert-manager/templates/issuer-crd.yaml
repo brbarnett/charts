@@ -8,6 +8,10 @@ metadata:
     chart: {{ template "cert-manager.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+  annotations:
+  {{- if .Values.issuerAnnotations }}
+{{ toYaml .Values.issuerAnnotations | indent 4 }}
+  {{- end }}
 spec:
   group: certmanager.k8s.io
   version: v1alpha1
